@@ -4,6 +4,10 @@ version = "0.1.0"
 description = "Deterministic, local-only pipeline for productizing HN problems."
 authors = ["SaltProphet"]
 
+packages = [
+	{ include = "picore", from = "src" }
+]
+
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.12"
