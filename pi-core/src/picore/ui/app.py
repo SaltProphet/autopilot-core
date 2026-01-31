@@ -255,4 +255,4 @@ if __name__ == "__main__":
                 gr.Button("Engage Kill Switch").click(kill_switch, None, None)
             with gr.Tab("Outputs"):
                 outputs_tab()
-        demo.launch()
+        demo.launch(server_name="0.0.0.0", server_port=7860, share=True)
