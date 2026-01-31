@@ -1,6 +1,6 @@
 # pi-core
 
-Deterministic, local-only pipeline that discovers a real problem from Hacker News, defines ONE product, generates real files, and packages a sellable template pack. Manual approval and kill switch are mandatory.
+Deterministic, yes
 
 
 ## Quickstart
