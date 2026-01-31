@@ -4,9 +4,10 @@ version = "0.1.0"
 description = "Deterministic, local-only pipeline for productizing HN problems."
 authors = ["SaltProphet"]
 
+
 [tool.poetry.dependencies]
 python = ">=3.9,<3.12"
-pydantic = "^1.10.0"
+pydantic = ">=2.0.0"
 requests = "^2.31.0"
 gradio = "^4.0.0"
 
