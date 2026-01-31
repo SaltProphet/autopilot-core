@@ -1,0 +1,2 @@
+# Generic REST connector implementation
+
