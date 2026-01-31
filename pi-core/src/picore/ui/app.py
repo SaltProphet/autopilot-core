@@ -16,11 +16,14 @@ def get_pi_core_root() -> Path:
     return Path(__file__).resolve().parents[3]
 
 def allowed_roots(root: Path) -> list[Path]:
-    return [
-        root / "data/runs",
-        root / "outputs/bundles",
-        root / "logs"
-    ]
+    # Allow all subfolders under data, outputs, logs, and the project root
+    roots = [root]
+    for sub in ["data", "outputs", "logs"]:
+        d = root / sub
+        if d.exists():
+            roots.append(d)
+            roots.extend([p for p in d.glob("**") if p.is_dir()])
+    return roots
 
 def safe_resolve(path: Path, roots: list[Path]) -> Path | None:
     try:
@@ -29,15 +32,11 @@ def safe_resolve(path: Path, roots: list[Path]) -> Path | None:
         resolved = path.resolve()
         for r in roots:
             try:
-                if resolved == r or resolved.is_relative_to(r):
+                # Accept if resolved is or is under r
+                if resolved == r or str(resolved).startswith(str(r)):
                     return resolved
             except Exception:
-                # For Python <3.9 compatibility
-                try:
-                    resolved.relative_to(r)
-                    return resolved
-                except Exception:
-                    continue
+                continue
         return None
     except Exception:
         return None
